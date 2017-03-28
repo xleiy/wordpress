@@ -1,0 +1,1 @@
+覆盖wp-includes下的link-template.php文件  2000行左右（其中对下一篇方法进行了微调）

@@ -1,0 +1,53 @@
+<div id="comment-list">
+    <ol class="comment-list">
+        <li id="li-comment-6894" class="comment">
+            <div id="comment-6894" class="comment-block">
+                <div class="comment__vcard">
+                    <div class="comment__avatar">
+                        <img class="avatar" src="https://cdn-gravatar.b0.upaiyun.com/avatar/5186466dfc42f0e86010e12287030661?s=80&amp;r=G&amp;d=retro" data-original="https://cdn-gravatar.b0.upaiyun.com/avatar/5186466dfc42f0e86010e12287030661?s=80&amp;r=G&amp;d=retro" alt="任务易" width="80" height="80" style="opacity: 1;"> </div>
+                    <div class="comment__meta">
+                        <cite class="comment__author">任务易</cite>
+                        <time class="comment__time" datetime="2017-03-06T15:45:30+08:00">March 6th, 2017 at 03:45 pm</time>
+                    </div>
+                </div>
+                <div id="comment-content" class="comment__content">
+                    <p>楼下说复杂的请问你是程序员吗？哪里看出来复杂了</p>
+                </div>
+                <a class="comment__reply" href="https://maicong.me/t/203/comment-page-1?replyTo=6894#comments" rel="nofollow">回复</a> </div>
+        </li>
+    </ol>
+    <section id="load__more" class="post__more" data-type="comments">
+        <a class="next" title="" href="https://maicong.me/t/203/comment-page-2#comments">加载更多</a>
+    </section>
+</div>
+<script language="javascript">
+//<![CDATA[ 
+function to_reply(commentID, author) {
+    var nNd = '@' + author + ':';
+    var myField;
+    if (document.getElementById('comment') && document.getElementById('comment').type == 'textarea') {
+        myField = document.getElementById('comment');
+    } else {
+        return false;
+    }
+    if (document.selection) {
+        myField.focus();
+        sel = document.selection.createRange();
+        sel.text = nNd;
+        myField.focus();
+    } else if (myField.selectionStart || myField.selectionStart == '0') {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        var cursorPos = endPos;
+        myField.value = myField.value.substring(0, startPos) + nNd + myField.value.substring(endPos, myField.value.length);
+        cursorPos += nNd.length;
+        myField.focus();
+        myField.selectionStart = cursorPos;
+        myField.selectionEnd = cursorPos;
+    } else {
+        myField.value += nNd;
+        myField.focus();
+    }
+}
+//]]>
+</script>
