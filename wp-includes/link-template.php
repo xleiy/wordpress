@@ -2007,6 +2007,7 @@ function next_post_link( $format = '%link &raquo;', $link = '%title', $in_same_t
  * @return string The link URL of the previous or next post in relation to the current post.
  */
 function get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+	$inlink='';
 	if ( $previous && is_attachment() )
 		$post = get_post( get_post()->post_parent );
 	else

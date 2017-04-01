@@ -17,6 +17,15 @@ remove_action('wp_head','rsd_link'); //移除head中的rel="EditURI"
 remove_action('wp_head','wlwmanifest_link'); //移除head中的rel="wlwmanifest"
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0 ); //rel=shortlink
 
+//文章缩略图
+if ( function_exists( 'add_theme_support' ) )   {
+  add_theme_support( 'post-thumbnails' );
+}
+
+/*首页文章截断*/
+/*首页文章截断完*/
+
+
 // 分页代码
 function par_pagenavi($range = 3)
 {
@@ -117,10 +126,6 @@ function bg_recent_comments($post_id,$no_comments = 5, $comment_len = 80, $avata
     $comm = '<div id="comment-list"><ol class="comment-list">';   
     if ( $comments ) : 
         foreach ( $comments as $comment ) :   
-    //         // $comm .= '<li>' . get_avatar( $comment->comment_author_email, $avatar_size );   
-    //         // $comm .= '<a class="author" href="' . get_permalink( $comment->post_ID ) . '#comment-' . $comment->comment_ID . '">';   
-    //         // $comm .= get_comment_author( $comment->comment_ID ) . ':</a> ';   
-    //         // $comm .= '<p>' . strip_tags( substr( apply_filters( 'get_comment_text', $comment->comment_content ), 0, $comment_len ) ) . '</p></li>';   
             $comm.='<li id="li-comment-' . $comment->comment_ID . '" class="comment">';
                 $comm.='<div id="comment-' . $comment->comment_ID . '" class="comment-block">';
                     $comm.='<div class="comment__vcard">';
@@ -245,4 +250,12 @@ function clear_zal_cache() {
  	update_option('zww_archives_list', ''); // 清空 zww_archives_list
 }
 add_action('save_post', 'clear_zal_cache'); // 新发表文章/修改文章时
+
+//禁止文章自动保存  
+add_action( 'wp_print_scripts', 'daxiawp_disable_autosave' );  
+function daxiawp_disable_autosave(){  
+    wp_deregister_script('autosave');  
+}  
+//禁止文章修订版本功能  
+remove_action('pre_post_update', 'wp_save_post_revision' );  
 ?>

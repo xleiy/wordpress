@@ -29,6 +29,7 @@
 </footer>
 <a class="scroll-up" style=""><span class="icon icon-up"></span></a>
 <?php wp_footer(); ?>
+</script>
 </body>
 </html>
  

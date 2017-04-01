@@ -1,1 +1,2 @@
-覆盖wp-includes下的link-template.php文件  2000行左右（其中对下一篇方法进行了微调）
+1、覆盖wp-includes下的link-template.php文件，更改上一篇、下一篇事件监听位置，2000行左右（其中对下一篇方法进行了微调）
+2、修改插件wp-editormd，wp-editormd\jetpack\lib\markdown\gfm.php 文件100行使插件兼容crayon-syntax-highlighter插件

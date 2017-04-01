@@ -19,8 +19,8 @@
 
         var defaultWindowWidth = $(window).width();
         $(window).resize(function() {
-            $('#blog-title').hide();
             if (defaultWindowWidth != $(window).width()) {
+                $('#blog-title').hide();
                 var newWidth = $(window).width();
                 $body.removeClass('menu-open');
                 if (newWidth > 600) {

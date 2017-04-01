@@ -28,7 +28,7 @@
 		    <div class="post-links">
 		    	<section id="postNextPrev">
 			        <div class="post-prev">
-			       		<?php previous_post_link('下一篇<br>%link'); ?>
+			       		<?php previous_post_link('上一篇<br>%link'); ?>
 			        </div>
 			        <div class="post-next">
 			        	<?php next_post_link('下一篇<br>%link'); ?>
