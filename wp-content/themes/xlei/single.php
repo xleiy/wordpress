@@ -37,8 +37,11 @@
 		    </div>
 		</div>
 		<section id="comments" class="comments">
-			<?php comments_template(); ?>
-			<?php bg_recent_comments(get_the_ID()); ?>
+			<?php 
+				// comments_template(); 
+				// bg_recent_comments(get_the_ID());//以下这句用以调用主题文件夹中comments.php
+           		comments_template( '', true );
+         	?>
 		</section>
     </div>
 <?php get_sidebar(); ?>

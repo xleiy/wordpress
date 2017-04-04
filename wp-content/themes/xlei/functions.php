@@ -120,7 +120,7 @@ function wpjam_redirect_single_post() {
 
 
 /*评论*/
-function bg_recent_comments($post_id,$no_comments = 5, $comment_len = 80, $avatar_size = 80) {   
+/*function bg_recent_comments($post_id,$no_comments = 5, $comment_len = 80, $avatar_size = 80) {   
     $comments_query = new WP_Comment_Query();   
     $comments = $comments_query->query( array( 'number' => $no_comments,'post_id'=>$post_id) );   
     $comm = '<div id="comment-list"><ol class="comment-list">';   
@@ -152,7 +152,7 @@ function bg_recent_comments($post_id,$no_comments = 5, $comment_len = 80, $avata
         <a class="next" title="" href="'.get_permalink($post_id).'/comment-page-2#comments">加载更多</a>
     </section>';
      echo $comm;    
-}  
+}  */
 /*评论完*/
 
 /*标签及分类*/
