@@ -26,7 +26,7 @@ define('DB_NAME', 'wordpress');
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
-define('DB_PASSWORD', 'xleiyao');
+define('DB_PASSWORD', 'root');
 
 /** MySQL主机 */
 define('DB_HOST', 'localhost');
