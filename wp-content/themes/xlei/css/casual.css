@@ -1236,6 +1236,7 @@ img.bgimage {
     margin: 2em 0;
     padding-left: 20px;
     border-left: 4px solid #e54e53;
+    background-color: rgba(241, 241, 241, 0.37);
 }
 
 .post-content img {
