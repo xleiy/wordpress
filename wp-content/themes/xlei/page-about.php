@@ -46,7 +46,7 @@
      <div id="a7"><?php bloginfo('name'); ?> · <?php bloginfo('description'); ?></div>
     <div id="a8">
         <a id="home" href="<?php echo home_url(); ?>" title="Home"></a>
-        <a id="weibo" title="新浪微博" target="_blank" href="http://weibo.com/u/389201"></a>
+        <a id="weibo" title="新浪微博" target="_blank" href="http://weibo.com/xleiyme"></a>
         <!-- <a id="gplus" title="赞助hd" target="_blank" href="http://me.alipay.com/hdlc"></a> -->
         <!--<a title="twitter" id="twitter" target="_blank" href="twitter地址"></a>-->
     </div>
