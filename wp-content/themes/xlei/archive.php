@@ -26,7 +26,13 @@ Template Name: archive
 			    <article class="post-list-article">
 		            <figure class="post-thumbnail">
 		                <a href="<?php the_permalink(); ?>">
-		                <img src="http://7xpot0.com1.z0.glb.clouddn.com/17-3-8/99520617-file_1488955072521_84f3.png">
+		                <?php 
+							if ( has_post_thumbnail() ) { ?> 
+							<?php the_post_thumbnail(); ?> 
+							<?php } else {?> 
+							<img src="<?php bloginfo('template_url'); ?>/thumbnail.jpg">
+						<?php } ?> 
+		                
 		                </a>
 		            </figure>
 		            <header class="post-header">
