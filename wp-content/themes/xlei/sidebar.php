@@ -25,13 +25,27 @@
                     </ul>
                 </div>
             </div>
+            <!-- 标签 -->
+            <div class="tag-lists widget" style="min-height: 150px;">
+                <h3 class="widget-title"> 分类</h3>
+                <div class="widget-content">
+                    <p style="overflow-y: scroll;max-height: 200px;">
+                    <?php $categories = get_categories();
+                        foreach ($categories as $cat) {
+                            $catid = $cat->cat_ID;
+                            ?>
+                            <a href="<?php echo get_category_link($catid);?>" title="<?php echo strip_tags(category_description($catid)); ?>"><?php echo get_cat_name($catid); ?></a>
+                        <?php } ?>
+                    </p>
+                </div>
+            </div>
+            <!-- 标签 -->
             <div class="tag-lists widget" style="min-height: 150px;">
                 <h3 class="widget-title"> 标签</h3>
                 <div class="widget-content">
                 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Third_sidebar') ) : ?> 
-                    <p><?php wp_tag_cloud('smallest=8&largest=22'); ?></p>
+                    <p style="overflow-y: scroll;max-height: 200px;"><?php wp_tag_cloud('smallest=12&largest=12'); ?></p>
                 <?php endif; ?>
-                <!-- <a class="tag-link" href="/tags/HTML/">HTML</a> <a class="tag-link" href="/tags/JavaScript/">JavaScript</a> <a class="tag-link" href="/tags/Objective-C/">Objective-C</a> <a class="tag-link" href="/tags/iOS/">iOS</a> <a class="tag-link" href="/tags/前端/">前端</a> <a class="tag-link" href="/tags/工作/">工作</a> <a class="tag-link" href="/tags/感言/">感言</a> <a class="tag-link" href="/tags/生活/">生活</a> -->
                 </div>
             </div>
             <!-- 归档 -->

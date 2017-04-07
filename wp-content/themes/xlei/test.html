@@ -1,53 +1,100 @@
-<div id="comment-list">
-    <ol class="comment-list">
-        <li id="li-comment-6894" class="comment">
-            <div id="comment-6894" class="comment-block">
-                <div class="comment__vcard">
-                    <div class="comment__avatar">
-                        <img class="avatar" src="https://cdn-gravatar.b0.upaiyun.com/avatar/5186466dfc42f0e86010e12287030661?s=80&amp;r=G&amp;d=retro" data-original="https://cdn-gravatar.b0.upaiyun.com/avatar/5186466dfc42f0e86010e12287030661?s=80&amp;r=G&amp;d=retro" alt="任务易" width="80" height="80" style="opacity: 1;"> </div>
-                    <div class="comment__meta">
-                        <cite class="comment__author">任务易</cite>
-                        <time class="comment__time" datetime="2017-03-06T15:45:30+08:00">March 6th, 2017 at 03:45 pm</time>
-                    </div>
-                </div>
-                <div id="comment-content" class="comment__content">
-                    <p>楼下说复杂的请问你是程序员吗？哪里看出来复杂了</p>
-                </div>
-                <a class="comment__reply" href="https://maicong.me/t/203/comment-page-1?replyTo=6894#comments" rel="nofollow">回复</a> </div>
-        </li>
-    </ol>
-    <section id="load__more" class="post__more" data-type="comments">
-        <a class="next" title="" href="https://maicong.me/t/203/comment-page-2#comments">加载更多</a>
-    </section>
-</div>
-<script language="javascript">
-//<![CDATA[ 
-function to_reply(commentID, author) {
-    var nNd = '@' + author + ':';
-    var myField;
-    if (document.getElementById('comment') && document.getElementById('comment').type == 'textarea') {
-        myField = document.getElementById('comment');
-    } else {
-        return false;
-    }
-    if (document.selection) {
-        myField.focus();
-        sel = document.selection.createRange();
-        sel.text = nNd;
-        myField.focus();
-    } else if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        var cursorPos = endPos;
-        myField.value = myField.value.substring(0, startPos) + nNd + myField.value.substring(endPos, myField.value.length);
-        cursorPos += nNd.length;
-        myField.focus();
-        myField.selectionStart = cursorPos;
-        myField.selectionEnd = cursorPos;
-    } else {
-        myField.value += nNd;
-        myField.focus();
-    }
-}
-//]]>
-</script>
+<? /* Template Name: About模板 */ ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <title>About</title>
+        <meta name="description" content="<?php bloginfo('description'); ?>" />
+        <meta name="keywords" content="<?php bloginfo('name'); ?>" />
+        <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/kontext.css">
+        <script src="<?php bloginfo('template_url'); ?>/js/kontext.js"></script>
+        <?php wp_head(); ?>
+    </head>
+
+    <body <?php body_class(); ?>>
+        <article class="kontext">
+            <!-- 第一个页面 -->
+            <div class="layer one show">
+                <h2>Kontext</h2>
+                <p>A context-shift transition. Use the dots below or your keyboard arrows.</p>
+            </div>
+            <!-- 第二个页面 -->
+            <div class="layer two">
+                <h2>Layer Two</h2>
+            </div>
+            <!-- 第三个页面 -->
+            <div class="layer three">
+                <h2>Layer Three</h2>
+            </div>
+        </article>
+        <ul class="bullets">
+        </ul>
+        </article>
+        <script type="text/javascript">
+        // Create a new instance of kontext
+        var k = kontext(document.querySelector('.kontext'));
+        // API METHODS:
+        // k.prev(); // Show prev layer
+        // k.next(); // Show next layer
+        // k.show( 3 ); // Show specific layer
+        // k.getIndex(); // Index of current layer
+        // k.getTotal(); // Total number of layers
+
+
+        // DEMO-SPECIFIC:
+
+        var bulletsContainer = document.body.querySelector('.bullets');
+
+        // Create one bullet per layer
+        for (var i = 0, len = k.getTotal(); i < len; i++) {
+            var bullet = document.createElement('li');
+            bullet.className = i === 0 ? 'active' : '';
+            bullet.setAttribute('index', i);
+            bullet.onclick = function(event) {
+                k.show(event.target.getAttribute('index'))
+            };
+            bullet.ontouchstart = function(event) {
+                k.show(event.target.getAttribute('index'))
+            };
+            bulletsContainer.appendChild(bullet);
+        }
+
+        // Update the bullets when the layer changes
+        k.changed.add(function(layer, index) {
+            var bullets = document.body.querySelectorAll('.bullets li');
+            for (var i = 0, len = bullets.length; i < len; i++) {
+                bullets[i].className = i === index ? 'active' : '';
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            if (event.keyCode === 37) k.prev();
+            if (event.keyCode === 39) k.next();
+        }, false);
+
+        var touchX = 0;
+        var touchConsumed = false;
+
+        document.addEventListener('touchstart', function(event) {
+            touchConsumed = false;
+            lastX = event.touches[0].clientX;
+        }, false);
+
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+
+            if (!touchConsumed) {
+                if (event.touches[0].clientX > lastX + 10) {
+                    k.prev();
+                    touchConsumed = true;
+                } else if (event.touches[0].clientX < lastX - 10) {
+                    k.next();
+                    touchConsumed = true;
+                }
+            }
+        }, false);
+        </script>
+    </body>
+
+    </html>

@@ -26,7 +26,7 @@
 		                	<?php the_title(); ?></a></h2>
 						</div>
 		                <span class="post-date"><?php the_time('Y年m月d日') ?></span>
-		                <span class="post-tag"><?php the_tags("","",""); ?></span>
+		                <span class="post-tag"><?php the_category(get_the_ID()); ?></span>
 
 		            </header>
 		            <div class="post-excerpt">
