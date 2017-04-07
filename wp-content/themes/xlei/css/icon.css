@@ -114,8 +114,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-search:before { content: "\e631"; }
-
+.icon-search:before { content: "\e611"; }
+.icon-biaoqian:before { content: "\e60e"; }
 .sticky{
     border: 1px solid;
     border-radius: 12px;
