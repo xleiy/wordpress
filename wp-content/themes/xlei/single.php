@@ -12,8 +12,9 @@
                 	<?php the_title(); ?>
                 </h1>
 			    <span class="post-date"><?php the_time('Y年m月d日') ?></span>
-			    <span class="post-tag"><?php the_category(get_the_ID()); ?></span>
+			    <span class="post-tag"><?php the_category(get_the_ID()); the_tags("","","");?></span>
 			    <span class="post-review">阅读次数 : <span data-hk-page="current"><?php post_views('', ' 次'); ?></span></span>
+			    <br>
 			    <div class="post-content">
 			  		<?php the_content(); ?>
 			    </div>
