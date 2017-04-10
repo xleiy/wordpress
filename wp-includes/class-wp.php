@@ -175,13 +175,11 @@ class WP {
 			$error = '404';
 			$this->did_permalink = true;
 
-			//$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
-			$pathinfo = mb_convert_encoding($_SERVER['PATH_INFO'], 'UTF-8', 'GBK');
+			$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
 			list( $pathinfo ) = explode( '?', $pathinfo );
 			$pathinfo = str_replace( "%", "%25", $pathinfo );
 
-			$req_uri = mb_convert_encoding($_SERVER['REQUEST_URI'], 'UTF-8', 'GBK');
-			list( $req_uri ) = explode( '?', $req_uri );
+			list( $req_uri ) = explode( '?', $_SERVER['REQUEST_URI'] );
 			$self = $_SERVER['PHP_SELF'];
 			$home_path = trim( parse_url( home_url(), PHP_URL_PATH ), '/' );
 			$home_path_regex = sprintf( '|^%s|i', preg_quote( $home_path, '|' ) );
