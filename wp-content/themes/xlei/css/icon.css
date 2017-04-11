@@ -114,7 +114,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-home:before { content: "\e7a4"; }
+
 .icon-search:before { content: "\e611"; }
+
+.icon-btnserach:before { content: "\e63a"; }
+
 .icon-biaoqian:before { content: "\e60e"; }
 .sticky{
     border: 1px solid;
