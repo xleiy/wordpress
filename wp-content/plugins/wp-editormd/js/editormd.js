@@ -2016,7 +2016,7 @@
                     
             var newMarkdownDoc = editormd.$marked(cmValue, markedOptions);
             
-            console.info("cmValue", cmValue, newMarkdownDoc);
+            //console.info("cmValue", cmValue, newMarkdownDoc);
             
             newMarkdownDoc = editormd.filterHTMLTags(newMarkdownDoc, settings.htmlDecode);
             

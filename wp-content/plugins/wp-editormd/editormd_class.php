@@ -1,5 +1,21 @@
 <?php
-
+//获取七牛上传凭证
+require 'sdk/autoload.php';
+use Qiniu\Auth;
+// 用于签名的公钥和私钥
+$accessKey = 'EQsLSBY8qw3_eunbAUI0yjO9E2o-htwofbFyROY7';
+$secretKey = 'rJo36UlvxhkBc5RWOZRkkkxhkDlcy4wCpsm6SzBa';
+$auth = new Auth($accessKey, $secretKey);
+// 空间名  https://developer.qiniu.io/kodo/manual/concepts
+$bucket = 'xleiy';
+  // 生成上传Token
+$token = $auth->uploadToken($bucket);
+?>
+<script type="text/javascript">
+    var bucket="<?php echo $bucket; ?>";
+    var token="<?php echo $token; ?>";
+</script>
+<?php
 class editormd
 {
     //启用模式
@@ -100,7 +116,7 @@ class editormd
                             window.document.getElementById("wp-content-editor-container").style.position = "relative";
                             window.document.getElementById("wp-content-editor-container").style.zIndex = "auto";
                         }//退出全屏返回原来的样式
-                    });
+                    });     
                 });
                 //移除原来编辑器工具栏
                 document.getElementById("ed_toolbar").style.display = "none";
@@ -109,6 +125,63 @@ class editormd
                 wp.media.editor.insert = function (html) {
                     original_wp_media_editor_insert(html);
                     EditorMD.insertValue(html);
+                }
+                //粘贴上传图片到七牛
+                //监听粘贴时间
+                document.getElementById("wp-content-editor-container").addEventListener('paste', function(e){
+                    if (e.target.nodeName.toLowerCase()!="textarea") {
+                        return;
+                    }
+                    var clipboard = e.clipboardData;
+                    // 有无内容
+                    if(!clipboard.items || !clipboard.items.length){
+                        clear();
+                        return;
+                    }
+                    
+                    var temp;
+                    if((temp = clipboard.items[0]) && temp.kind === 'file' && temp.type.indexOf('image') === 0){
+                        // 获取图片文件
+                        var imgFile = temp.getAsFile();
+                        //生成随机的图片名
+                        var fileName = (new GUID()).getGuid() + '.' +  imgFile.type.split('/')[1];
+                        //上传
+                        qiniuUpload(imgFile,token, fileName, function (blkRet) {
+                          //生成markdown格式的图片地址
+                          var img = '![](http://'+'oobqcv8v8.bkt.clouddn.com'+'/' + blkRet.key + ')';
+                          //在光标处插入图片
+                          EditorMD.insertValue(img);
+                        }.bind(this));
+                    }
+                }, false);
+                //上传
+                function qiniuUpload(f, token, key,fn){
+                    var xhr = new XMLHttpRequest();
+                    //创建表单
+                    xhr.open('POST', 'http://up-z2.qiniu.com', true);
+                    var formData, startDate;
+                    formData = new FormData();
+                    if (key !== null && key !== undefined) formData.append('key', key);
+                    formData.append('token', token);
+                    formData.append('file', f);
+                    var taking;
+                    xhr.onreadystatechange = function (response) {
+                        //上传成功则执行回调
+                        if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText) {
+                            var blkRet = JSON.parse(xhr.responseText);
+                            fn(blkRet);
+                        } else if (xhr.status != 200 && xhr.responseText) {
+                            if(xhr.status == 631){
+                                alert('七牛空间不存在.');
+                            }
+                            else{
+                                alert('七牛设置错误.');
+                            }
+                        }
+                    };
+                    startDate = new Date().getTime();
+                    //提交数据
+                    xhr.send(formData);
                 }
             });
             //]]>
@@ -131,7 +204,8 @@ class editormd
             return;
         }
         wp_deregister_script(array('media-upload'));//禁止加载多媒体脚本(减少对编辑器的干扰);
-        wp_enqueue_script('editormdjs', WP_EDITORMD_PLUGIN_URL . '/js/editormd.min.js', array('jquery'), WP_EDITORMD_PLUGIN_VERSION, false);//使用WP自带的jQuery库
+        wp_enqueue_script('editormdjs', WP_EDITORMD_PLUGIN_URL . '/js/editormd.js', array('jquery'), WP_EDITORMD_PLUGIN_VERSION, false);//使用WP自带的jQuery库
+        wp_enqueue_script('guid', WP_EDITORMD_PLUGIN_URL . '/js/guid.js', array('jquery'), WP_EDITORMD_PLUGIN_VERSION, false);//使用WP自带的jQuery库
     }
 
     //载入Style样式文件
