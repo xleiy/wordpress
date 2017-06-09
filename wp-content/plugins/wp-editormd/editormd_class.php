@@ -11,10 +11,7 @@ $bucket = 'xleiy';
   // 生成上传Token
 $token = $auth->uploadToken($bucket);
 ?>
-<script type="text/javascript">
-    var bucket="<?php echo $bucket; ?>";
-    var token="<?php echo $token; ?>";
-</script>
+
 <?php
 class editormd
 {
@@ -146,7 +143,7 @@ class editormd
                         //生成随机的图片名
                         var fileName = (new GUID()).getGuid() + '.' +  imgFile.type.split('/')[1];
                         //上传
-                        qiniuUpload(imgFile,token, fileName, function (blkRet) {
+                        qiniuUpload(imgFile,"<?php global $token; echo $token; ?>", fileName, function (blkRet) {
                           //生成markdown格式的图片地址
                           var img = '![](http://'+'oobqcv8v8.bkt.clouddn.com'+'/' + blkRet.key + ')';
                           //在光标处插入图片
