@@ -4018,7 +4018,8 @@ function _deprecated_argument( $function, $version, $message = null ) {
 		if ( function_exists( '__' ) ) {
 			if ( ! is_null( $message ) ) {
 				/* translators: 1: PHP function name, 2: version number, 3: optional message regarding the change */
-				trigger_error( sprintf( __('%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s! %3$s'), $function, $version, $message ) );
+				//解决搜索时报错
+				//trigger_error( sprintf( __('%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s! %3$s'), $function, $version, $message ) );
 			} else {
 				/* translators: 1: PHP function name, 2: version number */
 				trigger_error( sprintf( __('%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s with no alternative available.'), $function, $version ) );
