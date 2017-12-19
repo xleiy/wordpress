@@ -3,8 +3,8 @@
 require 'sdk/autoload.php';
 use Qiniu\Auth;
 // 用于签名的公钥和私钥
-$accessKey = 'EQsLSBY8qw3_eunbAUI0yjO9E2o-htwofbFyROY7';
-$secretKey = 'rJo36UlvxhkBc5RWOZRkkkxhkDlcy4wCpsm6SzBa';
+$accessKey = '七牛云可见';
+$secretKey = '七牛云可见';
 $auth = new Auth($accessKey, $secretKey);
 // 空间名  https://developer.qiniu.io/kodo/manual/concepts
 $bucket = 'xleiy';
